@@ -1,0 +1,9 @@
+.col{
+    background-color: aquamarine;
+}
+.navbar{
+    justify-content: space-between;
+}
+.card{
+    display: inline-block;
+}
