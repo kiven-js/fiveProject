@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Origin message :{{message}}</p>
+        <my-component class="zoo"></my-component>
+        <div-demo :style="{width:width + 'px',height:height + 'px',backgroundColor:color}">sss</div-demo>
+        <div v-if="awesome">ha</div>
+        <div v-else>vh</div>
+        <ul>
+            <li v-for="(item,index) in items" :key="item.message">
+                {{item.message+index}}
+            </li>
+            <li v-for="(n,index) of evenNum" :key="index">{{n}}</li>
+        </ul>
+        <template><div>ssss</div></template>
+    </div>
+    <script>
+        Vue.component("my-component",{
+            template:`
+            <p class="foo bar ">hi</p>
+            `
+        })
+        Vue.component("div-demo",{
+            template:`
+                <div></div>
+            `
+        })
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                message:"hello",
+                width:200,
+                height:200,
+                color:'red',
+                awesome:true,
+                items:[
+                    {message:'foo'},
+                    {message:"tto"}
+                ],
+                number:[1,2,3,4,5,6,7,8,9,20]
+            },
+            computed:{
+                evenNum:function(){
+                    return this.number.filter(function(num){
+                        return num % 2 == 0;
+                    })
+                },
+                now:function(){
+                    return Date.now();
+                }
+            },
+            methods:{
+                reverse:function(){
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
